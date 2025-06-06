@@ -7,15 +7,15 @@ canvas.height = 500
 squaresopen = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 function drawbackground() {
-    context.fillStyle = 'black'
-    context.fillRect(166, 0, 10, 500)
-    context.fillRect(333, 0, 10, 500)
-    context.fillRect(0, 166, 500, 10)
-    context.fillRect(0, 333, 500, 10)
+    context.fillStyle = 'black';
+    context.fillRect(166.6666666666666, 0, 5, 500);
+    context.fillRect(335, 0, 5, 500);
+    context.fillRect(0, 166.666666666666, 500, 5);
+    context.fillRect(0, 335, 500, 5);
 }
 
 function getSquareCoordinates(squareNumber) {
-    const cellSize = 166;
+    const actualCellSize = 160;
     const lineThickness = 10;
 
     let x = 0;
@@ -24,23 +24,27 @@ function getSquareCoordinates(squareNumber) {
     const row = Math.floor(squareNumber / 3);
     const col = squareNumber % 3;
 
-    if (col === 0) {
-        x = 0;
-    } else if (col === 1) {
-        x = cellSize + lineThickness;
-    } else {
-        x = (cellSize * 2) + (lineThickness * 2);
-    }
-
-    if (row === 0) {
-        y = 0;
-    } else if (row === 1) {
-        y = cellSize + lineThickness;
-    } else {
-        y = (cellSize * 2) + (lineThickness * 2);
-    }
+    x = col * actualCellSize + col * lineThickness;
+    y = row * actualCellSize + row * lineThickness;
 
     return { x: x, y: y };
+}
+const markPadding = 15;
+const actualCellSize = 160;
+const markSize = actualCellSize - (markPadding * 2);
+
+function drawbot(squareNumber) {
+    const coords = getSquareCoordinates(squareNumber);
+
+    context.fillStyle = 'red';
+    context.fillRect(coords.x + markPadding, coords.y + markPadding, markSize, markSize);
+}
+
+function drawplayer(squareNumber) {
+    const coords = getSquareCoordinates(squareNumber);
+
+    context.fillStyle = 'blue';
+    context.fillRect(coords.x + markPadding, coords.y + markPadding, markSize, markSize);
 }
 
 function drawbot(squareNumber) {
@@ -77,5 +81,8 @@ function playerturn() {
 }
 enter.addEventListener('click', playerturn);
 drawbackground();
-enter.addEventListener('click', playerturn)
-drawbackground();
+input.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        humanTurn();
+    }
+});
