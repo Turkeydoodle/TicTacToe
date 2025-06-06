@@ -1,0 +1,39 @@
+.theheader {
+    font-family: "Georgia", serif;
+}
+
+body {
+    background: linear-gradient(to right, cornflowerblue, lightblue);
+}
+.header-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: linear-gradient(to right, cornflowerblue, lightblue);
+    padding: 10px;
+}
+
+.header-left, .header-right {
+    display: flex;
+}
+
+.theheader {
+    font-family: "Georgia", serif;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px;
+}
+.canvas-container {
+    display: flex;
+    border: 1px solid black;
+    background: white;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    margin: 20px auto;
+}
+canvas {
+    background-color: lightgrey;
+}
