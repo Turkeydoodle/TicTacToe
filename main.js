@@ -11,12 +11,12 @@ function drawbackground() {
     context.fillRect(0, 166, 500, 10)
     context.fillRect(0, 333, 500, 10)
 }
-function drawbot() {
-    
+function drawbot(chosensquare) {
+    return
 }
 function botturn() {
-    botsquare = Math.floor(Math.random() * squaresopen.length-1);
-    squaresopen.remove(botsquare)
-    drawbot(squaresopen[botsquare])
+    botsquare = Math.floor(Math.random() * squaresopen.length);
+     drawbot(squaresopen[botsquare])
+    squaresopen.splice(botsquare, 1)
 }
 drawbackground()
