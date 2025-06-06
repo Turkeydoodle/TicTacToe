@@ -1,7 +1,7 @@
 canvas = document.getElementById('canvas')
 input = document.getElementById('input')
-enter = document.getElementById('enter')
 context = canvas.getContext('2d')
+enter = document.getElementById('enter')
 canvas.width = 500
 canvas.height = 500
 squaresopen = [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -49,7 +49,12 @@ function drawbot(squareNumber) {
     context.fillStyle = 'red';
     context.fillRect(coords.x, coords.y, 166, 166);
 }
+function drawplayer(square) {
+    const coords = getSquareCoordinates(square);
 
+    context.fillStyle = 'blue';
+    context.fillRect(coords.x, coords.y, 166, 166);
+}
 function botturn() {
     if (squaresopen.length === 0) {
         return;
@@ -61,5 +66,16 @@ function botturn() {
     drawbot(chosenSquareValue);
     squaresopen.splice(randomIndex, 1);
 }
-
+function playerturn() {
+    const playerInput = input.value;
+    const chosenSquare = parseInt(playerInput, 10);
+    const indexInSquaresOpen = squaresopen.indexOf(chosenSquare);
+    if (indexInSquaresOpen !== -1) { 
+        drawplayer(chosenSquare);
+        squaresopen.splice(indexInSquaresOpen, 1);
+}
+}
+enter.addEventListener('click', playerturn);
+drawbackground();
+enter.addEventListener('click', playerturn)
 drawbackground();
