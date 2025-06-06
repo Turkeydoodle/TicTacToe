@@ -80,9 +80,9 @@ function playerturn() {
 }
 }
 enter.addEventListener('click', playerturn);
-drawbackground();
-input.addEventListener('keypress', function(event) {
+input.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-        humanTurn();
+        playerturn();
     }
 });
+drawbackground();
