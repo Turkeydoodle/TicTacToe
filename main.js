@@ -2,6 +2,7 @@ canvas = document.getElementById('canvas')
 input = document.getElementById('input')
 context = canvas.getContext('2d')
 enter = document.getElementById('enter')
+turn = document.getElementById('turn')
 canvas.width = 500
 canvas.height = 500
 squaresopen = [0, 1, 2, 3, 4, 5, 6, 7, 8]
