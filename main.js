@@ -5,6 +5,12 @@ enter = document.getElementById('enter')
 turnd = document.getElementById('turn')
 canvas.width = 500
 canvas.height = 500
+let boardState = ['', '', '', '', '', '', '', '', ''];
+const winConditions = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+    [0, 4, 8], [2, 4, 6]            
+];
 squaresopen = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 turn = 'player'
 function drawbackground() {
@@ -47,18 +53,27 @@ function drawplayer(squareNumber) {
     context.fillStyle = 'blue';
     context.fillRect(coords.x + markPadding, coords.y + markPadding, markSize, markSize);
 }
+function checkWin() {
+    for (let i = 0; i < winConditions.length; i++) {
+        const [a, b, c] = winConditions[i];
+        if (boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]) {
+            return boardState[a]; 
+        }
+    }
+    if (squaresopen.length === 0) {
+        return 'draw';
+    }
 
-function drawbot(squareNumber) {
-    const coords = getSquareCoordinates(squareNumber);
-
-    context.fillStyle = 'red';
-    context.fillRect(coords.x, coords.y, 166, 166);
+    return null; 
 }
-function drawplayer(square) {
-    const coords = getSquareCoordinates(square);
-
-    context.fillStyle = 'blue';
-    context.fillRect(coords.x, coords.y, 166, 166);
+function endGame(result) {
+    if (result === 'draw') {
+        turnd.innerHTML = 'Game Over: It\'s a Draw!';
+    } else {
+        turnd.innerHTML = `Game Over: ${result.toUpperCase()} Wins!`;
+    }
+    input.disabled = true;
+    enter.disabled = true;
 }
 function botturn() {
     if (squaresopen.length === 0) {
@@ -77,20 +92,33 @@ function botturn() {
 function playerturn() {
     const playerInput = input.value;
     const chosenSquare = parseInt(playerInput, 10);
+    if (isNaN(chosenSquare) || chosenSquare < 0 || chosenSquare > 8 || boardState[chosenSquare] !== '') {
+        alert("Invalid move! Please enter an available square number (0-8).");
+        input.value = '';
+        return;
+    }
+    drawplayer(chosenSquare);
+    boardState[chosenSquare] = 'player'; 
     const indexInSquaresOpen = squaresopen.indexOf(chosenSquare);
-    if (indexInSquaresOpen !== -1) { 
-        drawplayer(chosenSquare);
+    if (indexInSquaresOpen !== -1) {
         squaresopen.splice(indexInSquaresOpen, 1);
+    }
+    input.value = ''; 
+    let winner = checkWin();
+    if (winner) {
+        endGame(winner);
+    } else {
+        turn = 'computer';
+        turnd.innerHTML = 'Computer';
+        setTimeout(botturn, 500);
+    }
 }
-}
+
 enter.addEventListener('click', playerturn);
 input.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
         if (turn === 'player') {
             playerturn();
-            turn = 'computer';
-            turnd.innerHTML = 'Computer';
-            setTimeout(botturn, 500);
         }
     }
 });
