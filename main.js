@@ -70,6 +70,9 @@ function botturn() {
 
     drawbot(chosenSquareValue);
     squaresopen.splice(randomIndex, 1);
+    turn = 'player';
+    turnd.innerHTML = 'Player';
+    input.value = ''
 }
 function playerturn() {
     const playerInput = input.value;
@@ -88,8 +91,6 @@ input.addEventListener('keyup', function(event) {
             turn = 'computer';
             turnd.innerHTML = 'Computer';
             setTimeout(botturn, 500);
-        } else if (turn === 'computer') { 
-            botturn();
         }
     }
 });
