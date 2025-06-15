@@ -2,11 +2,11 @@ canvas = document.getElementById('canvas')
 input = document.getElementById('input')
 context = canvas.getContext('2d')
 enter = document.getElementById('enter')
-turn = document.getElementById('turn')
+turnd = document.getElementById('turn')
 canvas.width = 500
 canvas.height = 500
 squaresopen = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
+turn = 'player'
 function drawbackground() {
     context.fillStyle = 'black';
     context.fillRect(166.6666666666666, 0, 5, 500);
@@ -83,7 +83,14 @@ function playerturn() {
 enter.addEventListener('click', playerturn);
 input.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-        playerturn();
+        if (turn === 'player') {
+            playerturn();
+            turn = 'computer';
+            turnd.innerHTML = 'Computer';
+            setTimeout(botturn, 500);
+        } else if (turn === 'computer') { 
+            botturn();
+        }
     }
 });
 drawbackground();
