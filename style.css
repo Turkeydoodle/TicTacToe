@@ -1,39 +1,113 @@
-.theheader {
-    font-family: "Georgia", serif;
+/* Reset some default styles */
+body,
+h1,
+h4,
+h6,
+input,
+button,
+table {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
 
+/* Body styling */
 body {
-    background: linear-gradient(to right, cornflowerblue, lightblue);
-}
-.header-container {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    background: linear-gradient(to right, cornflowerblue, lightblue);
-    padding: 10px;
+    background-color: #f4f7fa;
+    color: #333;
+    padding: 20px;
 }
 
-.header-left, .header-right {
+/* Header styling */
+.header-container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a90e2;
+    padding: 15px 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
 }
 
 .theheader {
-    font-family: "Georgia", serif;
-    color: black;
+    color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.theheader:hover {
+    text-decoration: underline;
+}
+
+/* Input section */
+h4 {
+    margin-bottom: 10px;
+}
+
+input {
     padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 200px;
 }
-.canvas-container {
-    display: flex;
-    border: 1px solid black;
-    background: white;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 500px;
-    margin: 20px auto;
+
+button {
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
 }
-canvas {
-    background-color: lightgrey;
+
+button:hover {
+    background-color: #357ab8;
+}
+
+/* Planner title */
+h1 {
+    margin: 30px 0 20px;
+    font-size: 2em;
+    color: #4a90e2;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+td {
+    vertical-align: top;
+    padding: 15px;
+    width: 50%;
+}
+
+/* Time blocks */
+td h6 {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #e9eff5;
+    border-radius: 5px;
+    font-size: 0.95em;
+}
+
+/* Event blocks */
+td h6[id] {
+    background-color: #fff8dc;
+    border: 1px solid #f0d98c;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+}
+
+td h6[id]:hover {
+    background-color: #fff2b2;
 }
